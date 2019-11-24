@@ -1,0 +1,10 @@
+table {
+    width: 80%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+  }

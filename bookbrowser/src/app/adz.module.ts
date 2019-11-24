@@ -8,7 +8,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { BookModule } from './book/book.module';
 import { ApiService } from './api.service';
-import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 

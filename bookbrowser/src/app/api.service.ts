@@ -18,11 +18,13 @@ export class ApiService {
 
     let searchUrl = URL + "volumes?q=" + bookName + "&maxResults=" + maxResult;
     
-    return this.httpClient.get(URL + "volumes?q=" + bookName + "&maxResults=" + maxResult).pipe(map((reponse : any) => {
+    return this.httpClient.get(searchUrl).pipe(map((reponse : any) => {
      let books : Book[] = [];
-     reponse.items.forEach(book => {
-      books.push(new Book(book.volumeInfo.title))
-    });
+     if (reponse.items.length > 0){
+      reponse.items.forEach(book => {
+       books.push(new Book(book));
+     });
+     }
      return books;  
     }));
   }

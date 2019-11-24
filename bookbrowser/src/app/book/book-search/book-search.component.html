@@ -1,6 +1,9 @@
-<p>book-search works!</p>
-<ul>
-    <li *ngFor="let book of books">
-      {{ book.title }}
-    </li>
-</ul>
+<mat-form-field class="search-form-field">
+    <input matInput type="text" placeholder="Search book by name" [(ngModel)]="searchValue">
+    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+      <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
+
+<button mat-button color="accent" (click)="search()">Search</button>
+
