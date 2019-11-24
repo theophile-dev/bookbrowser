@@ -22,8 +22,12 @@ export class Book {
             this.imageLink = vInfo.imageLinks.thumbnail;
             this.smallImageLink = vInfo.imageLinks.smallThumbnail;
         }
+
+        if (sInfo) {
+            this.smallDescription = sInfo.textSnippet;
+        }
+
         this.pageCount = vInfo.pageCount;
-        this.smallDescription = sInfo.textSnippet;
         this.descrition = vInfo.descrition;
         this.categories = vInfo.categories;
         this.rating = vInfo.rating;

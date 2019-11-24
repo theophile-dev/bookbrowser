@@ -1,5 +1,4 @@
-content {
-    width: 50%;
+.content {
     display: flex;
     justify-content: center;
 }
