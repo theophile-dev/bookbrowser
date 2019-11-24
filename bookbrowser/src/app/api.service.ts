@@ -20,7 +20,7 @@ export class ApiService {
     
     return this.httpClient.get(searchUrl).pipe(map((reponse : any) => {
      let books : Book[] = [];
-     if (reponse.items.length > 0){
+     if (reponse.items){
       reponse.items.forEach(book => {
        books.push(new Book(book));
      });

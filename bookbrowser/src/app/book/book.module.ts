@@ -8,7 +8,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import {MatDialogModule } from '@angular/material/dialog';
     MatTableModule,
     MatIconModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule
   ],
   entryComponents: [

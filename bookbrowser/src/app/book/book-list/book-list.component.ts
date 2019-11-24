@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { BookOverviewComponent } from '../book-overview/book-overview.component';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -17,21 +18,27 @@ export class BookListComponent implements OnInit, OnDestroy {
 
 
   books: Book[];
+  displayedBooks: Book[] = [];
   displayedColumns: string[] = ['thumbnail', 'title', 'author', 'description'];
-
+  authors: string[] = [];
+  authorFilterForm: FormControl = new FormControl(); 
   searchBooksSubscription: Subscription = null;
 
   constructor(private api: ApiService, private activateRoute: ActivatedRoute,
-     private route: Router, public dialog: MatDialog) { }
+     private route: Router, public dialog: MatDialog) {
+
+      }
 
   public ngOnInit() {
     this.activateRoute.params.subscribe( (params: any) => {  
       if (this.searchBooksSubscription != null) {
         this.searchBooksSubscription.unsubscribe();
       }
-      console.log(params.request);
       this.searchBooksSubscription = this.api.searchBooks(params.request, 10).subscribe((books: Book[]) =>{
         this.books = books;
+        this.authors = this.getAuthors(books);
+        this.displayedBooks = books;
+        this.initForm();
       });
     }); 
   }
@@ -43,9 +50,29 @@ export class BookListComponent implements OnInit, OnDestroy {
 
   public descriptionPopUp(book: Book): void {
     const dialogRef = this.dialog.open(BookOverviewComponent, {
-      width: '250px',
+      width: '500px',
       data: book
     });
+  }
+
+  public getAuthors(books: Book[]): string[]{
+    let authorsList: string[] = [];
+    books.forEach((book: Book) => {
+      if (book.authorsName){
+        authorsList.push(book.authorsName);
+      }
+    });
+    return authorsList;
+  }
+
+  private initForm(){
+    this.authorFilterForm.setValue(this.authors);
+  }
+
+  public filterAuthors(){
+    this.displayedBooks = this.books.filter((book: Book) => {
+      return this.authorFilterForm.value.includes(book.authorsName);
+    })
   }
 
   public ngOnDestroy(): void {

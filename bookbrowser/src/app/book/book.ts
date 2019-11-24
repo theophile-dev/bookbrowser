@@ -5,9 +5,9 @@ export class Book {
     imageLink: string;
     smallImageLink: string;
     authorsName: string;
-    descrition: string;
+    description: string;
     smallDescription: string;
-    edition: string;
+    publisher: string;
     pageCount: number;
     categories: string[];
     rating: number;
@@ -28,10 +28,11 @@ export class Book {
         }
 
         this.pageCount = vInfo.pageCount;
-        this.descrition = vInfo.descrition;
+        this.description = vInfo.description;
         this.categories = vInfo.categories;
-        this.rating = vInfo.rating;
+        this.rating = vInfo.averageRating;
         this.authorsName = vInfo.authors;
+        this.publisher = vInfo.publisher;
 
     }
 }

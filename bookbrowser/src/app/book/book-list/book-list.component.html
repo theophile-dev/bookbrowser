@@ -1,8 +1,17 @@
-<button mat-button (click)="navigateToSearchPage()">Back to search page</button>
+<div class = "center">
+<button mat-raised-button color="accent" (click)="navigateToSearchPage()">Back to search page</button>
+<mat-form-field>
+    <mat-label>Author Filter</mat-label>
+    <mat-select [formControl]="authorFilterForm" (selectionChange)="filterAuthors()" multiple>
+      <mat-option *ngFor="let author of authors" [value]="author">{{author}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
-<table mat-table [dataSource]="books" class="mat-elevation-z8">
+<div class="center">
+<table mat-table [dataSource]="displayedBooks" class="mat-elevation-z8">
 
-  <!-- Symbol Column -->
+  <!-- thumbnail Column -->
   <ng-container matColumnDef="thumbnail">
     <th mat-header-cell *matHeaderCellDef> Thumbnail </th>
     <td mat-cell *matCellDef="let element"> 
@@ -38,4 +47,5 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="descriptionPopUp(row)"></tr>
 </table>
+</div>
 
