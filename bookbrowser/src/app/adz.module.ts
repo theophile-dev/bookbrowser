@@ -4,17 +4,28 @@ import { NgModule } from '@angular/core';
 import { AdzRoutingModule } from './adz-routing.module';
 import { AdzComponent } from './adz.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './layout/header/header.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { BookModule } from './book/book.module';
+import { ApiService } from './api.service';
+import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
-    AdzComponent
+    AdzComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AdzRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    BookModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService, HttpClient],
   bootstrap: [AdzComponent]
 })
 export class AdzModule { }
