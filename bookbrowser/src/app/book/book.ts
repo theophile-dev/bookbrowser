@@ -4,7 +4,7 @@ export class Book {
     title: string;
     imageLink: string;
     smallImageLink: string;
-    authorsName: string;
+    authorsName: string[];
     description: string;
     smallDescription: string;
     publisher: string;

@@ -59,7 +59,11 @@ export class BookListComponent implements OnInit, OnDestroy {
     let authorsList: string[] = [];
     books.forEach((book: Book) => {
       if (book.authorsName){
-        authorsList.push(book.authorsName);
+        book.authorsName.forEach((author: string) => {
+          if (!authorsList.includes(author)){
+            authorsList.push(author);
+          }
+        })
       }
     });
     return authorsList;
@@ -70,11 +74,10 @@ export class BookListComponent implements OnInit, OnDestroy {
   }
 
   public filterAuthors(){
-    this.displayedBooks = this.books.filter((book: Book) => {
-      return this.authorFilterForm.value.includes(book.authorsName);
-    })
+    this.displayedBooks = this.books.filter((book: Book) => 
+      book.authorsName.some((author: string ) => 
+      this.authorFilterForm.value.includes(author)))
   }
-
   public ngOnDestroy(): void {
     // activateRoute subscription is automatically unsubscribed
     this.searchBooksSubscription.unsubscribe();
